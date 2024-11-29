@@ -1,0 +1,28 @@
+name: myapp
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8000:80"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend
+  
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - mynetwork
+    volumes:
+      - myvolume:/app/uploads
+
+networks:
+  mynetwork:
+
+volumes:
+  myvolume:
